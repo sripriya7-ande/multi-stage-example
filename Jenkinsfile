@@ -2,19 +2,19 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'manikiran7/multi-stage-example'
-        TAG = 'v0.0.1'
+        DOCKER_IMAGE = '81429444/amazon-nginx'
+        TAG = 'latest'
     }
 
     tools {
-        maven 'Maven3'       // Configure Maven in Jenkins Global Tools
-        jdk 'Java21'          // Optional: If not using JDK inside container
+        maven 'Maven_3.9.4'       // Configure Maven in Jenkins Global Tools
+                 
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/manikiran7/multi-stage-example.git', branch: 'master'
+                git url: 'https://github.com/sripriya7-ande/multi-stage-example.git', branch: 'master'
             }
         }
 
@@ -47,10 +47,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Image pushed: ${DOCKER_IMAGE}:${TAG}"
+            echo "Image pushed: ${DOCKER_IMAGE}:${TAG}"
         }
         failure {
-            echo "❌ Build failed."
+            echo "Build failed."
         }
     }
 }
